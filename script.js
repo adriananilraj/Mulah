@@ -16,7 +16,7 @@ document.getElementById('loyaltyPointsBtn').addEventListener('click', function()
     // Validate the phone number using a regular expression
     var phoneRegex = /^\d{9}$/; // Assuming a 10-digit phone number format
     if (!phoneRegex.test(phoneNumber)) {
-    alert("Invalid phone number. Please enter a 10-digit phone number.");
+    alert("Invalid phone number. Please enter a 9-digit phone number.");
     return; // Stop further execution if the phone number is invalid
     }
     // Redirect to the registration page
