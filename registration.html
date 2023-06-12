@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-title">
+            <div id="back" class="back">
+                <img src="./img/back.svg" alt="" srcset="">
+            </div>
+            MULAH</div>
+
+        <div class="wrapper-container">
+            <div class="register-title">
+                <h2>Registration</h2>
+                <p>Please fill up your details.</p>
+            </div>
+            <div class="register-container">
+                <form id="myForm" action="" novalidate>
+                    <div class="input-wrapper">
+                        <div>Name</div>
+                        <input id="nameInput" class="r-input" type="text" placeholder="Enter Name" required>
+                        <small id="nameError" class="error-message"></small>
+                    </div>
+                    <div class="input-wrapper">
+                        <div>Birthday</div>
+                        <div class="birthday-container">
+                            <input id="dayInput" class="r-input" type="number" placeholder="DD" min="1" max="31" required>
+                            <input id="monthInput" class="r-input" type="number" placeholder="MM" min="1" max="12" required>
+                            <input id="yearInput" class="r-input" type="number" placeholder="YYYY" min="1900" max="2023" required>
+                        </div>
+                        <small id="dayError" class="error-message"></small>
+                    </div>
+                    <div class="input-wrapper">
+                        <div>Email</div>
+                        <input id="emailInput" class="r-input" type="text" placeholder="Enter Address" required>
+                        <small id="emailError" class="error-message"></small>
+                        <div class="checkboxContainer">
+                            <input type="checkbox" id="emailCheck">
+                            <label for="emailCheck"> No email address</label><br>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button id="loyaltyPointsBtn" type="submit"> Continue </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-desc">
+            Powered by <a href="http://">MulahRewards.com</a>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('back').addEventListener('click', function() {
+    // Go back to the previous page (in this case, index.html)
+    window.history.back();
+    });
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission for now
+
+  // Reset error messages
+  var errorMessages = document.getElementsByClassName('error-message');
+  for (var i = 0; i < errorMessages.length; i++) {
+    errorMessages[i].textContent = '';
+  }
+
+  // Get form input values
+  var name = document.getElementById('nameInput').value.trim();
+  var day = document.getElementById('dayInput').value.trim();
+  var month = document.getElementById('monthInput').value.trim();
+  var year = document.getElementById('yearInput').value.trim();
+  var email = document.getElementById('emailInput').value.trim();
+
+  // Validate name
+  if (name === '') {
+    document.getElementById('nameError').textContent = '*Please insert a name';
+  }
+
+  // Validate birthday
+  if (day === '' || month === '' || year === '') {
+    document.getElementById('dayError').textContent = '*Please insert your birthday';
+  }
+
+  // Validate email
+  if (email === '') {
+    document.getElementById('emailError').textContent = 'Please enter your email';
+  } else if (!isValidEmail(email)) {
+    document.getElementById('emailError').textContent = '*Please insert a valid email address';
+  }
+
+  // Submit the form if there are no errors
+  if (!name || !day || !month || !year || !email || !isValidEmail(email)) {
+    return; // Exit if there are errors
+  }
+
+  
+  // Form is valid, submit the form or perform further actions
+  // ... (submit or perform actions here)
+
+  var storedObject = localStorage.getItem('user')
+  var myObject = JSON.parse(storedObject) || {};
+  myObject.name = name;
+  myObject.day = day;
+  myObject.month = month;
+  myObject.year = year;
+  myObject.email = email;
+  var updatedObject = JSON.stringify(myObject);
+
+  localStorage.setItem('myObject', updatedObject);
+  window.location.href = 'display.html';
+});
+
+// Email validation function
+function isValidEmail(email) {
+  var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return emailRegex.test(email);
+}
+</script>
+</html>

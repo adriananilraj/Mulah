@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-title">MULAH</div>
+
+        <div class="wrapper-container">
+            <div class="display-container">
+                <p id="display-desc"></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-desc">
+            Powered by <a href="http://">MulahRewards.com</a>
+        </div>
+    </div>
+</body>
+<script>
+    localStorage.removeItem('user');
+    let storedData = localStorage.getItem('myObject');
+    var user = JSON.parse(storedData);
+    var detailsContainer = document.getElementById('display-desc');
+    var message = `
+    <h4> Thank you for singing up ${user.name} </h4>
+    <div style=padding-top:20px;>
+        Here are your registered deatils: 
+    </div> 
+    <div  style=padding-top:10px;> 
+        Birthday: ${user.day} / ${user.month} / ${user.year} <br>
+    </div>
+    <div  style=padding-top:10px;> 
+        Address: ${user.email} <br>
+    </div>
+    <div  style=padding-top:10px;> 
+        Phone: +60${user.phone} <br>
+    </div>
+    `
+    // var message = `Thank you for signing up, ` + user.name + `!<br/>`;
+    // message += 'Here are your registered details:<br>';
+    // message += 'Birthday: ' + user.day + '/' + user.month + '/' + user.year + '<br>';
+    // message += 'Email: ' + user.email + '<br>';
+    detailsContainer.innerHTML = message;
+    // message += 'Here are your registered details:<br>';
+    // message += 'Name: ' + name + '<br>';
+    // message += 'Birthday: ' + day + '/' + month + '/' + year + '<br>';
+    // message += 'Email: ' + email + '<br>';
+</script>
+</html>
